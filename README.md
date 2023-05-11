@@ -108,3 +108,17 @@ serverless config credentials \
   --key {Your Access Key} \
   --secret {Your Secret Access Key}
 ```
+
+## Install Plugins
+```
+serverless plugin install -n serverless-offline
+```
+
+```
+serverless plugin install -n serverless-python-requirements
+```
+
+## Upgrade PIP
+```
+pip install --upgrade pip
+```

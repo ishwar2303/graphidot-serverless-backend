@@ -19,4 +19,7 @@ var/
 # Serverless directories
 .serverless
 
+# node modules
+node_modules
+
 locals_var.txt
