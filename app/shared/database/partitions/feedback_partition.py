@@ -47,7 +47,8 @@ class FeedbackPartition(Partition):
         feedback = FeedbackModel()
         feedback.id = record.get('object_id')
         feedback.rating = record.get('rating')
-        feedback.message = record.get('message')
+        feedback.comment = record.get('comment')
+        feedback.captchaToken = record.get('captchaToken')
 
         return feedback
     
@@ -66,8 +67,10 @@ class FeedbackPartition(Partition):
         # Add optional data
         if model.rating:
             record.update({'rating': model.rating})
-        if model.message:
-            record.update({'message': model.message})
+        if model.comment:
+            record.update({'comment': model.comment})
+        if model.captchaToken:
+            record.update({'captchaToken': model.captchaToken})
 
         return record
 
