@@ -18,9 +18,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        
-    - run: install node modules
-    - name: npm install
+
+    - name: install node modules
+      run: npm install
 
     - name: serverless deploy
       run: sls deploy --stage dev
