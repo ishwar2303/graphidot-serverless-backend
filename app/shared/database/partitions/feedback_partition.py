@@ -47,27 +47,27 @@ class FeedbackPartition(Partition):
         feedback = FeedbackModel()
         feedback.id = record.get('object_id')
         feedback.rating = record.get('rating')
-        feedback.message = record.get('message')
+        feedback.comment = record.get('comment')
+        feedback.captchaToken = record.get('captchaToken')
 
         return feedback
     
     def _model_to_record(self, model: object) -> dict:
 
-        # Assert required parameters
-        assert model.id, 'Missing object id'
-
         # Add required data
         record = {
             'object_type': GraphiDotObjectType.FEEDBACK.value,
-            'object_id': model.id,
+            'object_id': int(time.time()),
             'modified': int(time.time())
         }
 
         # Add optional data
         if model.rating:
             record.update({'rating': model.rating})
-        if model.message:
-            record.update({'message': model.message})
+        if model.comment:
+            record.update({'comment': model.comment})
+        if model.captchaToken:
+            record.update({'captchaToken': model.captchaToken})
 
         return record
 
