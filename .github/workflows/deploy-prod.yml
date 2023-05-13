@@ -1,9 +1,9 @@
-name: Deploy DEV
+name: Deploy PROD
 
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   deploy:
@@ -50,7 +50,7 @@ jobs:
       run: pip3 install -r requirements.txt
 
     - name: serverless deploy
-      run: sls deploy --stage dev
+      run: sls deploy --stage prod
 
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
