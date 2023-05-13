@@ -127,3 +127,11 @@ pip install --upgrade pip
 ```
 pip3 install awscli --upgrade --user
 ```
+
+## Deploy
+sls is shorthand for serverless
+```
+sls deploy --stage dev
+sls deploy --stage prod
+```
+
