@@ -28,8 +28,11 @@ jobs:
     - name: aws cli upgrade
       run: pip3 install awscli --upgrade --user
 
-    - name: install python
+    - name: Upgrade pip
       run: python -m pip install --upgrade pip
+
+    - name: install python
+      run: sudo apt update | sudo apt install software-properties-common | sudo apt install python3.9
 
     - name: install python requirements
       run: pip3 install -r requirements.txt
