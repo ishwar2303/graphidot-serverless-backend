@@ -24,7 +24,10 @@ jobs:
 
     - name: install serverless
       run: npm install -g serverless
-      
+
+    - name: aws cli upgrade
+      run: pip3 install awscli --upgrade --user
+
     - name: serverless deploy
       run: sls deploy --stage dev
       # uses: serverless/github-action@v3.2
