@@ -7,6 +7,21 @@ provider:
   region: ap-south-1
   versionFunctions: false
 
+  iam:
+    role:
+      statements:
+      
+      - Effect: Allow
+        Action:
+          - 'dynamodb:BatchGetItem'
+          - 'dynamodb:GetItem'
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:BatchWriteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:UpdateItem'
+        Resource: 'arn:aws:dynamodb:ap-south-1:796111410382:table/graphidot_objects_dev'
+
 plugins:
   - serverless-offline
   - serverless-python-requirements
