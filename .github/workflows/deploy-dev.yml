@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        python-version: ["3.11"]
+        # python-version: ["3.11"]
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
@@ -38,8 +38,11 @@ jobs:
     - name: check pip version
       run: pip3 --version
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+    # - name: Set up Python ${{ matrix.python-version }}
+    #   uses: actions/setup-python@v3
+
+    - name: install python
+      run: pyenv install python3.9
 
     - name: check python version
       run: python3 --version
