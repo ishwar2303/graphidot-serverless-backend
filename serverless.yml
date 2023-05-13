@@ -6,6 +6,8 @@ provider:
   runtime: python3.9
   region: ap-south-1
   versionFunctions: false
+  environment:
+    STAGE: ${opt:stage, 'dev'}
 
   iam:
     role:
@@ -20,7 +22,7 @@ provider:
           - 'dynamodb:BatchWriteItem'
           - 'dynamodb:PutItem'
           - 'dynamodb:UpdateItem'
-        Resource: 'arn:aws:dynamodb:ap-south-1:796111410382:table/graphidot_objects_dev'
+        Resource: ${file(./config.${opt:stage, 'dev'}.json):GRAPHIDOT_OBJECTS_TABLE_ARN}
 
 plugins:
   - serverless-offline
