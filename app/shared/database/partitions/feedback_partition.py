@@ -54,13 +54,10 @@ class FeedbackPartition(Partition):
     
     def _model_to_record(self, model: object) -> dict:
 
-        # Assert required parameters
-        assert model.id, 'Missing object id'
-
         # Add required data
         record = {
             'object_type': GraphiDotObjectType.FEEDBACK.value,
-            'object_id': model.id,
+            'object_id': int(time.time()),
             'modified': int(time.time())
         }
 

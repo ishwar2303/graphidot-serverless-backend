@@ -122,3 +122,8 @@ serverless plugin install -n serverless-python-requirements
 ```
 pip install --upgrade pip
 ```
+
+## AWS CLI Upgrade
+```
+pip3 install awscli --upgrade --user
+```
