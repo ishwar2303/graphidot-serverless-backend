@@ -41,6 +41,9 @@ jobs:
     # - name: Set up Python ${{ matrix.python-version }}
     #   uses: actions/setup-python@v3
 
+    - name: install pyenv
+      run: brew install pyenv
+
     - name: install python
       run: pyenv install python3.9
 
