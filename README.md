@@ -128,6 +128,30 @@ pip install --upgrade pip
 pip3 install awscli --upgrade --user
 ```
 
+
+# Backend Setup
+
+## DynamoDB
+Create two dynamodb tables
+1. graphidot_objects_dev -> for development environment  
+    Partition Key  
+    - Name: `object_type`  
+    - Type: `String`  
+
+    Sort Key  
+    - Name: `object_id`  
+    - Type: `Number`  
+2. graphidot_objects_prod -> for production environment  
+    Partition Key  
+    - Name: `object_type`  
+    - Type: `String`  
+
+    Sort Key  
+    - Name: `object_id`  
+    - Type: `Number`  
+
+
+
 ## Deploy
 sls is shorthand for serverless
 ```
