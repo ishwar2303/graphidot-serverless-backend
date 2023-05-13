@@ -11,7 +11,6 @@ def main(payload: dict) -> dict:
 
     # Prepare feedback model
     feedback = FeedbackModel()
-    feedback.id = 100
     feedback.rating = rating
     feedback.comment = comment
     feedback.captchaToken = captchaToken
