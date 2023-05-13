@@ -32,6 +32,6 @@ functions:
     handler: handler.feedback_handler
     events:
       - http:
-          path: feedback
+          path: WebsiteFeedback/Post
           method: post
           cors: true
