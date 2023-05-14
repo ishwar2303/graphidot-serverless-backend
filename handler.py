@@ -3,6 +3,7 @@ import sys
 import traceback
 from app.functions.feedback import feedback_sender
 from app.functions.contact_us import contact_us_sender
+from app.functions.report_bug import report_bug_sender
 
 def _extract_payload(event: dict) -> object:
     """ Extract payload from request, looks for body first, else in query parameter """
@@ -60,6 +61,17 @@ def contact_us_handler(event, context):
         payload = _extract_payload(event)
         print(payload)
         response, status = contact_us_sender.main(payload)
+        return _http_response(response, status)
+    except Exception:
+        traceback.print_exc()
+        _handle_error(context)
+        return _http_response({'message': 'Internal Error'}, 500)
+        
+def report_bug_handler(event, context):
+    try:
+        payload = _extract_payload(event)
+        print(payload)
+        response, status = report_bug_sender.main(payload)
         return _http_response(response, status)
     except Exception:
         traceback.print_exc()

@@ -45,3 +45,11 @@ functions:
           path: CustomerMessage/Post
           method: post
           cors: true
+
+  report_bug:
+    handler: handler.report_bug_handler
+    events:
+      - http: 
+          path: ReportBug/Post
+          method: post
+          cors: true
