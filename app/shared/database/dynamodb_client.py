@@ -2,6 +2,7 @@ import boto3
 import os
 from app.shared.database.partitions.contact_us_partition import ContactUsPartition
 from app.shared.database.partitions.feedback_partition import FeedbackPartition
+from app.shared.database.partitions.report_bug_partition import ReportBugPartition
 
 
 class DynamodbClient:
@@ -17,3 +18,4 @@ class DynamodbClient:
         # Instantiate a class for each partition for the graphidot objects table
         self.feedback = FeedbackPartition(graphidot_objects_table, client)
         self.contact_us = ContactUsPartition(graphidot_objects_table, client)
+        self.report_bug = ReportBugPartition(graphidot_objects_table, client)
