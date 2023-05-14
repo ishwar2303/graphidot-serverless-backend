@@ -37,3 +37,11 @@ functions:
           path: WebsiteFeedback/Post
           method: post
           cors: true
+
+  contact_us:
+    handler: handler.contact_us_handler
+    events: 
+      - http:
+          path: CustomerMessage/Post
+          method: post
+          cors: true
