@@ -13,6 +13,12 @@ class ContactUsModel:
         self.customerMessage1: str = None
         self.captchaToken: str = None
 
+class ReportBugModel:
+    def __init__(self):
+        self.url = None
+        self.details = None
+        self.browser = None
+        self.operatingSystem = None
+        self.captchaToken = None
 
-
-        
+    
