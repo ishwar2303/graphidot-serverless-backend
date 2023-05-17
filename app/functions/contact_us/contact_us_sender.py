@@ -1,3 +1,4 @@
+from app.shared.common.recaptcha import CaptchaValidation
 from app.shared.database.dynamodb_client import DynamodbClient
 from app.shared.models import ContactUsModel
 
@@ -11,6 +12,11 @@ def main(payload: dict) -> dict:
 
     if not firstName or not lastName or not email or not contact or not customerMessage1 or not captchaToken:
         return ({'message': 'Missing parameters'}, 400)
+
+    # Captcha verification
+    captcha = CaptchaValidation()
+    if not captcha.validate(captchaToken):
+        return ({'message': 'Captcha validation failed'}, 400)
 
     # Prepare contact_us model
     contact_us = ContactUsModel()
