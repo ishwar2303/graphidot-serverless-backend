@@ -8,7 +8,7 @@ provider:
   versionFunctions: false
   environment:
     STAGE: ${opt:stage, 'dev'}
-
+    GOOGLE_CAPTCHA_VERIFICATION_URL: ${file(./config.${opt:stage, 'dev'}.json):GOOGLE_CAPTCHA_VERIFICATION_URL}
   iam:
     role:
       statements:
