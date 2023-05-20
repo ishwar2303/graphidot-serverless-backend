@@ -10,9 +10,9 @@ class ContactUsPartition(Partition):
         self.table = table
         self.client = client
 
-    def put(self, feedback:ContactUsModel):
+    def put(self, contact_us:ContactUsModel):
         """ Put ContactUs Record """
-        record = self._model_to_record(feedback)
+        record = self._model_to_record(contact_us)
         self.table.put_item(Item = record)
         return True
     
