@@ -1,5 +1,4 @@
 {
     "GRAPHIDOT_OBJECTS_TABLE_ARN": "arn:aws:dynamodb:ap-south-1:796111410382:table/graphidot_objects_dev",
-    "GRAPHIDOT_OBJECTS_TABLE_NAME": "graphidot_objects_dev",
-    "GOOGLE_CAPTCHA_VERIFICATION_URL": "https://www.google.com/recaptcha/api/siteverify"
+    "GRAPHIDOT_OBJECTS_TABLE_NAME": "graphidot_objects_dev"
 }
