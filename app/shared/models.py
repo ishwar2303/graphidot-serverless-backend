@@ -21,4 +21,15 @@ class ReportBugModel:
         self.operatingSystem = None
         self.captchaToken = None
 
-    
+class CustomerReviewModel:
+    def __init__(self):
+        self.firstName = None
+        self.lastName = None
+        self.email = None
+        self.serviceName = None
+        self.comment = None
+        self.overallRating = None
+        self.refer = None
+        self.expectation = None
+        self.subscribe = None
+        self.captchaToken = None

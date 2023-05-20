@@ -3,6 +3,7 @@ import os
 from app.shared.database.partitions.contact_us_partition import ContactUsPartition
 from app.shared.database.partitions.feedback_partition import FeedbackPartition
 from app.shared.database.partitions.report_bug_partition import ReportBugPartition
+from app.shared.database.partitions.customer_review_partition import CustomerReviewPartition
 
 
 class DynamodbClient:
@@ -19,3 +20,4 @@ class DynamodbClient:
         self.feedback = FeedbackPartition(graphidot_objects_table, client)
         self.contact_us = ContactUsPartition(graphidot_objects_table, client)
         self.report_bug = ReportBugPartition(graphidot_objects_table, client)
+        self.customer_review = CustomerReviewPartition(graphidot_objects_table, client)
