@@ -10,7 +10,7 @@ def main(payload: dict) -> dict:
     customerMessage1 = payload.get('customerMessage1')
     captchaToken = payload.get('captchaToken')
 
-    if not firstName or not lastName or not email or not contact or not customerMessage1 or not captchaToken:
+    if not firstName or not email or not contact or not customerMessage1 or not captchaToken:
         return ({'message': 'Missing parameters'}, 400)
 
     # Captcha verification

@@ -4,6 +4,7 @@ import traceback
 from app.functions.feedback import feedback_sender
 from app.functions.contact_us import contact_us_sender
 from app.functions.report_bug import report_bug_sender
+from app.functions.customer_review import customer_review_sender
 
 def _extract_payload(event: dict) -> object:
     """ Extract payload from request, looks for body first, else in query parameter """
@@ -78,3 +79,13 @@ def report_bug_handler(event, context):
         _handle_error(context)
         return _http_response({'message': 'Internal Error'}, 500)
         
+def customer_review_handler(event, context):
+    try:
+        payload = _extract_payload(event)
+        print(payload)
+        response, status = customer_review_sender.main(payload)
+        return _http_response(response, status)
+    except Exception:
+        traceback.print_exc()
+        _handle_error(context)
+        return _http_response({'message': 'Internal Error'}, 500)

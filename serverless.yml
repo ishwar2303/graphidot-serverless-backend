@@ -53,3 +53,11 @@ functions:
           path: ReportBug/Post
           method: post
           cors: true
+
+  customer_review:
+    handler: handler.customer_review_handler
+    events:
+      - http:
+          path: CustomerReview/Post
+          method: post
+          cors: true
