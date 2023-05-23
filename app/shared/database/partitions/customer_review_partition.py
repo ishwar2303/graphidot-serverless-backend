@@ -1,5 +1,5 @@
 import time
-
+from boto3.dynamodb.conditions import Key
 from app.shared.database.partitions.partition import Partition
 from app.shared.models import CustomerReviewModel
 from app.shared.enums import GraphiDotObjectType
@@ -22,14 +22,32 @@ class CustomerReviewPartition(Partition):
             raise ValueError('No object id provided')
         
         response = self.table.get_item(
-            key = {
-                'object_type': GraphiDotObjectType.CONTACT_US.value,
+            Key = {
+                'object_type': GraphiDotObjectType.CUSTOMER_REVIEW.value,
                 'object_id': object_id
             }
         )
 
         record = response.get('Item')
         return self._record_to_model(record)
+    
+    def get_reviews_pagination(self, limit:int = 2, lastEvaluatedKey:dict = None):
+        """ Get 10 records at a time from table """
+
+        if lastEvaluatedKey:
+            response = self.table.query(
+                KeyConditionExpression=Key('object_type').eq(GraphiDotObjectType.CUSTOMER_REVIEW.value),
+                Limit=limit,
+                ExclusiveStartKey=lastEvaluatedKey,
+                ScanIndexForward=False
+            )
+        else:
+            response = self.table.query(
+                KeyConditionExpression=Key('object_type').eq(GraphiDotObjectType.CUSTOMER_REVIEW.value),
+                Limit=limit,
+                ScanIndexForward=False
+            )
+        return response
     
     def update(self, **kwargs):
         pass
@@ -45,18 +63,18 @@ class CustomerReviewPartition(Partition):
             return None
         
         customer_review = CustomerReviewModel()
-        customer_review.id = record.get('object_id')
+        customer_review.id = int(record.get('object_id'))
         customer_review.firstName = record.get('firstName')
         customer_review.lastName = record.get('lastName')
         customer_review.email = record.get('email')
         customer_review.serviceName = record.get('serviceName')
         customer_review.comment = record.get('comment')
-        customer_review.overallRating = record.get('overallRating')
+        customer_review.overallRating = int(record.get('overallRating'))
         customer_review.refer = record.get('refer')
         customer_review.expectation = record.get('expectation')
         customer_review.subscribe = record.get('subscribe')
         customer_review.captchaToken = record.get('captchaToken')
-
+        customer_review.modified = int(record.get('modified'))
         return customer_review
     
     def _model_to_record(self, model: object) -> dict:
