@@ -61,3 +61,11 @@ functions:
           path: CustomerReview/Post
           method: post
           cors: true
+
+  fetch_customer_review:
+    handler: handler.fetch_customer_review_handler
+    events:
+      - http:
+          path: CustomerReview/Fetch
+          method: post
+          cors: true

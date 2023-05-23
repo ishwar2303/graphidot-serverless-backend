@@ -23,6 +23,7 @@ class ReportBugModel:
 
 class CustomerReviewModel:
     def __init__(self):
+        self.id = None
         self.firstName = None
         self.lastName = None
         self.email = None
@@ -33,3 +34,4 @@ class CustomerReviewModel:
         self.expectation = None
         self.subscribe = None
         self.captchaToken = None
+        self.modified = None
