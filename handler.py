@@ -5,6 +5,7 @@ from app.functions.feedback import feedback_sender
 from app.functions.contact_us import contact_us_sender
 from app.functions.report_bug import report_bug_sender
 from app.functions.customer_review import customer_review_sender
+from app.functions.customer_review import fetch_customer_reviews
 
 def _extract_payload(event: dict) -> object:
     """ Extract payload from request, looks for body first, else in query parameter """
@@ -31,7 +32,8 @@ def _handle_error(context: any) -> None:
 
     
 def _http_response(body, status: int = 200) -> dict:
-
+    print('Response Received -------------- ------------- ------------')
+    print(body)
     """
     Wraps data into format suitable for http
     """
@@ -84,6 +86,17 @@ def customer_review_handler(event, context):
         payload = _extract_payload(event)
         print(payload)
         response, status = customer_review_sender.main(payload)
+        return _http_response(response, status)
+    except Exception:
+        traceback.print_exc()
+        _handle_error(context)
+        return _http_response({'message': 'Internal Error'}, 500)
+    
+def fetch_customer_review_handler(event, context):
+    try:
+        payload = _extract_payload(event)
+        print(payload)
+        response, status = fetch_customer_reviews.main(payload)
         return _http_response(response, status)
     except Exception:
         traceback.print_exc()
